@@ -12,15 +12,11 @@ namespace RockPaperScissorsLizardSpock
         public int gameMode;
         public Player player1;
         public Player player2;
-        public Player computer;
+  
 
 
         public void PlayGame()
         {
-            player1 = new Human("Player1", 0);
-            player2 = new Human("Player2", 0);
-            computer = new Computer(0);
-
             DisplayPremise();
             DisplayRules();
             GetGameMode();
@@ -38,7 +34,7 @@ namespace RockPaperScissorsLizardSpock
                 Console.WriteLine();
             }else if(gameMode == 2)
             {
-                while (player1.score < 3 && computer.score < 3)
+                while (player1.score < 3 && player2.score < 3)
                 {
                     PlayHvCRound();
                     AlertHvCScore();
@@ -91,7 +87,17 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("Enter the number 1 or 2 to choose game mode: ");
             Console.WriteLine("[1] Human vs Human");
             Console.WriteLine("[2] Human vs Computer");
-            gameMode = int.Parse(Console.ReadLine());
+            gameMode = int.Parse(Console.ReadLine());  
+            if(gameMode == 1)
+            {
+                player1 = new Human();
+                player2 = new Human();
+            }
+            else if (gameMode == 2)
+            {
+                player1 = new Human();
+                player2 = new Computer();
+            }
             Console.WriteLine();
             if(gameMode != 1 && gameMode != 2)
             {
