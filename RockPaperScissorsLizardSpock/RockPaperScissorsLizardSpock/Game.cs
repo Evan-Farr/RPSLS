@@ -168,6 +168,9 @@ namespace RockPaperScissorsLizardSpock
             {
                 Console.Clear();
                 Console.WriteLine("Thanks for playing!");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Hit [Enter] to quite.");
             }else
             {
                 Console.WriteLine();
