@@ -7,3 +7,6 @@ C:\Users\EvanC\Documents\GitHub\RockPaperScissorsLizardSpock\RockPaperScissorsLi
 C:\Users\EvanC\Documents\GitHub\RPSLS\RockPaperScissorsLizardSpock\RockPaperScissorsLizardSpock\bin\Debug\RockPaperScissorsLizardSpock.exe.config
 C:\Users\EvanC\Documents\GitHub\RPSLS\RockPaperScissorsLizardSpock\RockPaperScissorsLizardSpock\obj\Debug\RockPaperScissorsLizardSpock.exe
 C:\Users\EvanC\Documents\GitHub\RPSLS\RockPaperScissorsLizardSpock\RockPaperScissorsLizardSpock\obj\Debug\RockPaperScissorsLizardSpock.pdb
+C:\Users\EvanC\Documents\GitHub\RPSLS\RockPaperScissorsLizardSpock\RockPaperScissorsLizardSpock\bin\Debug\RockPaperScissorsLizardSpock.exe
+C:\Users\EvanC\Documents\GitHub\RPSLS\RockPaperScissorsLizardSpock\RockPaperScissorsLizardSpock\bin\Debug\RockPaperScissorsLizardSpock.pdb
+C:\Users\EvanC\Documents\GitHub\RPSLS\RockPaperScissorsLizardSpock\RockPaperScissorsLizardSpock\obj\Debug\RockPaperScissorsLizardSpock.csprojResolveAssemblyReference.cache

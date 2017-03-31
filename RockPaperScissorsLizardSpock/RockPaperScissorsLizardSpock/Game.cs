@@ -12,7 +12,7 @@ namespace RockPaperScissorsLizardSpock
         public int gameMode;
         public Player player1;
         public Player player2;
-  
+
 
 
         public void PlayGame()
@@ -20,58 +20,29 @@ namespace RockPaperScissorsLizardSpock
             DisplayPremise();
             DisplayRules();
             GetGameMode();
-            if (gameMode == 1)
+            while (player1.score < 3 && player2.score < 3)
             {
-                while(player1.score < 3 && player2.score < 3)
-                {
-                    PlayHvHRound();
-                    AlertHvHScore();
-                    Console.WriteLine("Hit [Enter] to continue.");
-                    Console.ReadLine();
-                }
-                AlertWinner();
-                RequestNewGame();
-                Console.WriteLine();
-            }else if(gameMode == 2)
-            {
-                while (player1.score < 3 && player2.score < 3)
-                {
-                    PlayHvCRound();
-                    AlertHvCScore();
-                    Console.WriteLine("Hit [Enter] to continue.");
-                    Console.ReadLine();
-                }
-                AlertWinner();
-                RequestNewGame();
-                Console.WriteLine();
+                PlayRound();
+                AlertScore();
+                Console.WriteLine("Hit [Enter] to continue.");
+                Console.ReadLine();
             }
+            AlertWinner();
+            RequestNewGame();
+            Console.WriteLine();
         }
 
-        public void PlayHvHRound()
+        public void PlayRound()
         {
-            Console.WriteLine("> Player1's turn: ");
+            Console.WriteLine("> " + player1.name + "'s turn: ");
             player1.GetChoice();
-            AlertPlayerOneChoice();
+            AlertChoice(player1);
             Console.WriteLine();
-            Console.WriteLine("> Player2's turn: ");
+            Console.WriteLine("> " + player2.name +"'s turn: ");
             player2.GetChoice();
-            AlertPlayerTwoChoice();
+            AlertChoice(player2);
             Console.WriteLine();
-            DetermineWinnerHvH(player1.choice, player2.choice);
-            Console.WriteLine();
-        }
-
-        public void PlayHvCRound()
-        {
-            Console.WriteLine("> Player1's turn: ");
-            player1.GetChoice();
-            AlertPlayerOneChoice();
-            Console.WriteLine();
-            Console.WriteLine("> Computer's turn: ");
-            computer.GetChoice();
-            AlertComputerChoice();
-            Console.WriteLine();
-            DetermineWinnerHvC(player1.choice, computer.choice);
+            DetermineWinner(player1.choice, player2.choice);
             Console.WriteLine();
         }
 
@@ -90,13 +61,13 @@ namespace RockPaperScissorsLizardSpock
             gameMode = int.Parse(Console.ReadLine());  
             if(gameMode == 1)
             {
-                player1 = new Human();
-                player2 = new Human();
+                player1 = new Human("Player1", 0);
+                player2 = new Human("Player2", 0);
             }
             else if (gameMode == 2)
             {
-                player1 = new Human();
-                player2 = new Computer();
+                player1 = new Human("Player1", 0);
+                player2 = new Computer(0);
             }
             Console.WriteLine();
             if(gameMode != 1 && gameMode != 2)
@@ -122,17 +93,17 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine();
         }
 
-        public void DetermineWinnerHvH(int a, int b)
+        public void DetermineWinner(int a, int b)
         {
             int determination = (5 + a - b) % 5;
             
             if(determination == 1 || determination == 3)
             {
-                Console.WriteLine("Result: Player1 wins!");
+                Console.WriteLine("Result: " + player1.name + " wins!");
                 player1.score += 1;
             }else if(determination == 2 || determination == 4)
             {
-                Console.WriteLine("Result: Player2 wins!");
+                Console.WriteLine("Result: " + player2.name + " wins!");
                 player2.score += 1;
             }else if(determination == 0)
             {
@@ -140,135 +111,48 @@ namespace RockPaperScissorsLizardSpock
             }
         }
 
-        public void DetermineWinnerHvC(int a, int b)
+        public void AlertChoice(Player player)
         {
-            int determination = (5 + a - b) % 5;
-
-            if (determination == 1 || determination == 3)
+            if(player.choice == 0)
             {
-                Console.WriteLine();
-                Console.WriteLine("Result: You win!");
-                Console.WriteLine();
-                player1.score += 1;
-            }
-            else if (determination == 2 || determination == 4)
+                Console.WriteLine(player.name + ": ROCK");
+            }else if(player.choice == 1)
             {
-                Console.WriteLine();
-                Console.WriteLine("Result: The computer won.");
-                Console.WriteLine();
-                computer.score += 1;
-            }
-            else if (determination == 0)
+                Console.WriteLine(player.name + ": PAPER");
+            }else if (player.choice == 2)
             {
-                Console.WriteLine();
-                Console.WriteLine("Result: Draw.");
-                Console.WriteLine();
+                Console.WriteLine(player.name + ": SCISSORS");
+            }else if (player.choice == 3)
+            {
+                Console.WriteLine(player.name + ": SPOCK");
+            }else if (player.choice == 4)
+            {
+                Console.WriteLine(player.name + ": LIZARD");
             }
         }
 
-        public void AlertPlayerOneChoice()
-        {
-            if(player1.choice == 0)
-            {
-                Console.WriteLine("Player1 Chose: ROCK");
-            }else if(player1.choice == 1)
-            {
-                Console.WriteLine("Player1 Chose: PAPER");
-            }else if (player1.choice == 2)
-            {
-                Console.WriteLine("Player1 Chose: SCISSORS");
-            }else if (player1.choice == 3)
-            {
-                Console.WriteLine("Player1 Chose: SPOCK");
-            }else if (player1.choice == 4)
-            {
-                Console.WriteLine("Player1 Chose: LIZARD");
-            }
-        }
-
-        public void AlertPlayerTwoChoice()
-        {
-            if (player2.choice == 0)
-            {
-                Console.WriteLine("Player2 Chose: ROCK");
-            }
-            else if (player2.choice == 1)
-            {
-                Console.WriteLine("Player2 Chose: PAPER");
-            }
-            else if (player2.choice == 2)
-            {
-                Console.WriteLine("Player2 Chose: SCISSORS");
-            }
-            else if (player2.choice == 3)
-            {
-                Console.WriteLine("Player2 Chose: SPOCK");
-            }
-            else if (player2.choice == 4)
-            {
-                Console.WriteLine("Player2 Chose: LIZARD");
-            }
-        }
-
-        public void AlertComputerChoice()
-        {
-            if (computer.choice == 0)
-            {
-                Console.WriteLine("Computer Chose: ROCK");
-            }
-            else if (computer.choice == 1)
-            {
-                Console.WriteLine("Computer Chose: PAPER");
-            }
-            else if (computer.choice == 2)
-            {
-                Console.WriteLine("Computer Chose: SCISSORS");
-            }
-            else if (computer.choice == 3)
-            {
-                Console.WriteLine("Computer Chose: SPOCK");
-            }
-            else if (computer.choice == 4)
-            {
-                Console.WriteLine("Computer Chose: LIZARD");
-            }
-        }
-
-        public void AlertHvHScore()
+        public void AlertScore()
         {
             Console.WriteLine("Current Score: ");
-            Console.WriteLine("Player1: " + player1.score);
-            Console.WriteLine("Player2: " + player2.score);
-            Console.WriteLine();
-            Console.WriteLine();
-        }
-
-        public void AlertHvCScore()
-        {
-            Console.WriteLine("Current Score: ");
-            Console.WriteLine("Player1: " + player1.score);
-            Console.WriteLine("Computer: " + computer.score);
+            Console.WriteLine(player1.name + ": " + player1.score);
+            Console.WriteLine(player2.name + ": " + player2.score);
             Console.WriteLine();
             Console.WriteLine();
         }
 
         public void AlertWinner()
         {
-            if(player1.score == 3)
+            if (player1.score == 3)
             {
                 Console.WriteLine();
                 Console.WriteLine("Game Over: ");
-                Console.WriteLine("Player1 wins!");
-            }else if(player2.score == 3)
+                Console.WriteLine(player1.name + " wins!");
+            }
+            else if (player2.score == 3)
             {
                 Console.WriteLine();
                 Console.WriteLine("Game Over: ");
-                Console.WriteLine("Player2 wins!");
-            }else if(computer.score == 3)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Game Over: ");
-                Console.WriteLine("Sorry, but the Computer spanked you.");
+                Console.WriteLine(player2.name + " wins!");
             }
         }
 

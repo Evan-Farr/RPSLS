@@ -10,7 +10,7 @@ namespace RockPaperScissorsLizardSpock
     {
         public Computer(int Score)
         {
-            name = "CPU";
+            name = "Computer";
             score = Score;
         }
 
