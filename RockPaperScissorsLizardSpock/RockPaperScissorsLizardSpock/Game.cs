@@ -13,8 +13,6 @@ namespace RockPaperScissorsLizardSpock
         public Player player1;
         public Player player2;
 
-
-
         public void PlayGame()
         {
             DisplayPremise();
