@@ -24,6 +24,12 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("[3] Spock");
             Console.WriteLine("[4] Lizard");
             choice = int.Parse(Console.ReadLine());
+
+            if(choice != 0 && choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5)
+            {
+                Console.WriteLine("You did not enter a valid option. Please Try again:");
+                GetChoice();
+            }
             return choice;
         }
     }
