@@ -23,13 +23,18 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("[2] Scissors");
             Console.WriteLine("[3] Spock");
             Console.WriteLine("[4] Lizard");
-            choice = int.Parse(Console.ReadLine());
+            string option = Console.ReadLine();
 
-            if(choice != 0 && choice != 1 && choice != 2 && choice != 3 && choice != 4)
+            if(option != "0" && option != "1" && option != "2" && option != "3" && option != "4")
             {
+                Console.WriteLine();
                 Console.WriteLine("You did not enter a valid option. Please Try again: ");
                 GetChoice();
+            }else
+            {
+                choice = Convert.ToInt32(option);
             }
+
             return choice;
         }
     }
