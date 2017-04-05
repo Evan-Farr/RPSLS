@@ -9,7 +9,7 @@ namespace RockPaperScissorsLizardSpock
     public class Game
     {
         public int round;
-        public int gameMode;
+        public string gameMode;
         public Player player1;
         public Player player2;
 
@@ -56,21 +56,21 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("Enter the number 1 or 2 to choose game mode: ");
             Console.WriteLine("[1] Human vs Human");
             Console.WriteLine("[2] Human vs Computer");
-            gameMode = int.Parse(Console.ReadLine());  
-            if(gameMode == 1)
+            gameMode = Console.ReadLine();  
+            if(gameMode == "1")
             {
                 player1 = new Human("Player1", 0);
                 player2 = new Human("Player2", 0);
             }
-            else if (gameMode == 2)
+            else if (gameMode == "2")
             {
                 player1 = new Human("Player1", 0);
                 player2 = new Computer(0);
             }
             Console.WriteLine();
-            if(gameMode != 1 && gameMode != 2)
+            if(gameMode != "1" && gameMode != "2")
             {
-                Console.WriteLine("You did not enter a valid input. Please enter only '1' or '2' as a choice");
+                Console.WriteLine("You did not enter a valid input. Please enter only 1 or 2 as a choice");
                 GetGameMode();
             }
         }
